@@ -1,0 +1,393 @@
+:root {
+    --bg-color: #f0f7fb;       /* Light blue background */
+    --surface-color: #ffffff;  /* White block background */
+    --text-main: #1a2933;      /* Darker slate/blue text */
+    --text-muted: #5e7a8f;
+    --accent: #2e5b7a;         /* Vibrant blue accent */
+    --border-color: #d1e3ef;   /* Light blue border */
+    --font-heading: 'Outfit', system-ui, sans-serif;
+    --font-sans: 'Outfit', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    /* Animation Colors */
+    --color-builder: #e07a5f;
+    --color-researcher: #56b6c2;
+    --color-innovator: #f9c74f; /* Bright yellow/gold */
+    --color-ai: #c678dd;
+}
+
+body.dark-mode {
+    --bg-color: #0f172a;
+    --surface-color: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #38bdf8;
+    --border-color: #334155;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+a {
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--text-muted);
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--bg-color);
+}
+
+/* Navigation */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-brand {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-main);
+    padding: 0.2rem;
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    min-height: 40vh;
+    padding: 4rem 0;
+}
+
+.mono-greeting {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    max-width: 550px;
+    line-height: 1.5;
+}
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.animated-subtitle .builder { color: var(--color-builder); }
+.animated-subtitle .researcher { color: var(--color-researcher); }
+.animated-subtitle .innovator { color: var(--color-innovator); }
+.animated-subtitle .ai-specialist { 
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--color-ai); 
+}
+
+/* Typing Effect */
+.typing-container {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent); }
+}
+
+.typing-1 {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.15em solid transparent;
+    animation: 
+        typing 1.5s steps(20, end) forwards,
+        blink-caret .75s step-end 2; /* Blink a few times then stop */
+    width: 100%;
+}
+
+.typing-effect-title {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.15em solid var(--accent);
+    margin: 0;
+    padding-right: 0.1em;
+    width: 0;
+    width: max-content;
+    display: inline-block;
+    animation: 
+        typing 1.5s steps(20, end) 1.5s forwards,
+        blink-caret .75s step-end infinite;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.social-icon {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    background: #fff;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.social-icon:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--border-color);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05
+
+.mono-text {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 2rem 0;
+}
+
+.section-title {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 3.5rem;
+    color: var(--text-main);
+}
+
+.section-spaced {
+    padding: 7rem 0;
+}
+
+/* Latest News */
+.news-item {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    align-items: center;
+}
+
+.news-date {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--accent);
+    min-width: 100px;
+    font-weight: bold;
+}
+
+.news-content p {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 1.05rem;
+}
+
+.highlight-link {
+    color: var(--color-ai);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.highlight-link:hover {
+    color: var(--color-builder);
+}
+
+/* Projects */
+.project-card {
+    display: block;
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+    background-color: var(--surface-color);
+    border-radius: 4px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0px var(--border-color);
+}
+
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.project-card-header h3 {
+    font-size: 1.3rem;
+}
+
+.badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background: #eee;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+}
+
+/* Case Study / Project Page */
+.case-study h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-meta {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.meta-column strong {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+}
+
+.content-block {
+    margin-bottom: 3rem;
+}
+
+.content-block h2 {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.content-block p {
+    margin-bottom: 1.5rem;
+    color: #444;
+}
+
+footer {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: right;
+    padding: 2rem 3rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+
+.see-all-link {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 0.8rem;
+    color: var(--text-muted);
+}
+.see-all-link a {
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.see-all-link a:hover {
+    color: var(--accent);
+}
