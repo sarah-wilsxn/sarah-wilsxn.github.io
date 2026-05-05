@@ -121,13 +121,13 @@
     </script>
 
     <script>
-        async function fetchAndPopulate(url, containerId, maxItems = 3) {
+        async function fetchAndPopulate(url, containerId, maxItems = 3, selector = ".publication-item") {
             try {
                 const response = await fetch(url);
                 const html = await response.text();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, "text/html");
-                const items = Array.from(doc.querySelectorAll(".publication-item")).filter(item => !item.innerText.includes("Template"));
+                const items = Array.from(doc.querySelectorAll(selector)).filter(item => !item.innerText.includes("Template"));
                 const container = document.getElementById(containerId);
                 if (container && items.length > 0) {
                     for (let i = 0; i < Math.min(items.length, maxItems); i++) {
@@ -141,7 +141,7 @@
             }
         }
         document.addEventListener("DOMContentLoaded", () => {
-            fetchAndPopulate("research.html", "dynamic-research", 3);
+            fetchAndPopulate("research.html", "dynamic-research", 3, "#publications-only .publication-item");
             fetchAndPopulate("projects.html", "dynamic-projects", 3);
             fetchAndPopulate("media.html", "dynamic-media", 3);
         });
