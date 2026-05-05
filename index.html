@@ -127,7 +127,15 @@
                 const html = await response.text();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, "text/html");
-                const items = Array.from(doc.querySelectorAll(selector)).filter(item => !item.innerText.includes("Template"));
+                
+                // Try the specific selector first, then fall back to generic
+                let items = Array.from(doc.querySelectorAll(selector));
+                if (items.length === 0) {
+                    items = Array.from(doc.querySelectorAll(".publication-item"));
+                }
+                
+                items = items.filter(item => !item.innerText.includes("Template"));
+                
                 const container = document.getElementById(containerId);
                 if (container && items.length > 0) {
                     for (let i = 0; i < Math.min(items.length, maxItems); i++) {
