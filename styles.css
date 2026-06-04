@@ -331,6 +331,25 @@ h1, h2, h3 {
     border-radius: 20px;
 }
 
+.publication-links {
+    margin-top: 0.45rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.publication-link {
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.publication-link:hover {
+    text-decoration: underline;
+    color: var(--text-main);
+}
+
 /* Case Study / Project Page */
 .case-study h1 {
     font-size: 3rem;
